@@ -1,0 +1,28 @@
+<project>
+
+	<target name="clean">
+		<delete dir="../build" />
+	</target>
+
+	<target name="compile">
+		<mkdir dir="../build/classes" />
+		<javac srcdir="../src" destdir="../build/classes"/>
+	</target>
+
+	<target name="jar">
+		<mkdir dir="../build/jar" />
+		<jar destfile="../build/jar/LearningAnt.jar" basedir="../build/classes">
+			<!-- gives no-main manifest attribute error on running -->
+			<manifest>
+				<attribute name="Main-class" value="learning.LearningAnt" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run">
+		<!-- fork="true": gives cannot execute a jar in non-forked mode, please set fork="true"-->
+		<java jar="../build/jar/LearningAnt.jar" fork="true"/>
+	</target>
+
+</project>
+
